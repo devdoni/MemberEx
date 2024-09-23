@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="~{/fragment/title::title}"></title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/create_accout_form.css}">
+    <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+    <script th:src="@{/js/create_account_form.js}"></script>
+</head>
+<body>
+
+<header th:replace="~{/fragment/header_nav_footer::header}"></header>
+<nav th:replace="~{/fragment/header_nav_footer::nav}"></nav>
+
+<main>
+    <div id="main_wrap">
+        <div class="word">
+            CREATE ACCOUNT FORM
+        </div>
+        <div class="create_account_form">
+            <form th:action="@{/member/create_account_confirm}" name="create_account_form" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>아이디</td>
+                        <td>
+                            <input type="text" name="m_id" placeholder="INPUT USER ID">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호</td>
+                        <td>
+                            <input type="password" name="m_pw" placeholder="INPUT USER PW">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호 확인</td>
+                        <td>
+                            <input type="password" name="m_pw_again" placeholder="INPUT USER PW AGAIN">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>메일 주소</td>
+                        <td>
+                            <input type="email" name="m_mail" placeholder="INPUT USER MAIL">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연락처</td>
+                        <td>
+                            <input type="text" name="m_phone" placeholder="INPUT USER PHONE">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>성 구분</td>
+                        <td>
+                            <input type="radio" name="m_gender" value="M">남성 &nbsp;&nbsp;
+                            <input type="radio" name="m_gender" value="W">여성
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>취미 (3개이상)</td>
+
+                        <td>
+                            <input th:each="hobbyDto : ${hobbyDtos}" type="checkbox" th:value="${hobbyDto.h_no}" th:text="${hobbyDto.h_name} + '&nbsp;&nbsp;'" name="hobbys">
+                            <!--
+                            <input type="checkbox" name="m_hobby" value="">축구 &nbsp;&nbsp;
+                            <input type="checkbox" name="m_hobby" value="야구">야구 &nbsp;&nbsp;
+                            <input type="checkbox" name="m_hobby" value="농구">농구 &nbsp;&nbsp;
+                            <input type="checkbox" name="m_hobby" value="족구">족구 &nbsp;&nbsp;
+                            <input type="checkbox" name="m_hobby" value="배구">배구 &nbsp;&nbsp;
+                            -->
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>프로필 사진</td>
+                        <td>
+                            <input type="file" name="profile">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" value="CREATE ACCOUNT" onclick="createAccountForm()">
+                            <input type="reset" value="RESET">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+<footer th:replace="~{/fragment/header_nav_footer::footer}"></footer>
+
+
+</body>
+</html>

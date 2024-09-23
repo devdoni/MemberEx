@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="~{/fragment/title::title}"></title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/modify_form.css}">
+    <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+    <script th:replace="~{/js/common_js::jquery_cdn}"></script>
+    <script th:src="@{/js/modify_form.js}"></script>
+
+</head>
+<body>
+
+<header th:replace="~{/fragment/header_nav_footer::header}"></header>
+<nav th:replace="~{/fragment/header_nav_footer::nav}"></nav>
+
+<main>
+    <div id="main_wrap">
+        <div class="word">
+            MODIFY FORM
+        </div>
+        <div class="modify_form">
+            <form th:action="@{/member/modify_confirm}" name="modify_form" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>아이디</td>
+                        <td>
+                            <input type="hidden" name="m_no" th:value="${loginedMemberDto.m_no}">
+                            <input type="text" th:value="${loginedMemberDto.m_id}" readonly disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호</td>
+                        <td>
+                            <input type="password" value="******" readonly disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>메일 주소</td>
+                        <td>
+                            <input type="email" name="m_mail" placeholder="INPUT USER MAIL" th:value="${loginedMemberDto.m_mail}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연락처</td>
+                        <td>
+                            <input type="text" name="m_phone" placeholder="INPUT USER PHONE" th:value="${loginedMemberDto.m_phone}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>성 구분</td>
+                        <td>
+                            <input type="radio" name="m_gender" value="M" th:checked="${loginedMemberDto.m_gender == 'M'}">남성 &nbsp;&nbsp;
+                            <input type="radio" name="m_gender" value="W" th:checked="${loginedMemberDto.m_gender == 'W'}">여성
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>취미 (3개이상)</td>
+
+                        <td>
+                            <input th:each="hobbyDto : ${hobbyDtos}" type="checkbox" th:value="${hobbyDto.h_no}" th:text="${hobbyDto.h_name} + '&nbsp;&nbsp;'" name="hobbys" th:checked="${loginedMemberDto.m_hobby.contains(hobbyDto.h_no.toString())}">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>프로필 사진</td>
+                        <td>
+                            <th:block th:if="${loginedMemberDto.m_profile_thumbnail} != null">
+                                <img class="profile_thumbnail" th:src="@{'/profileImg/' + ${loginedMemberDto.m_id} + '/' + ${loginedMemberDto.m_profile_thumbnail}}"><br>
+                            </th:block>
+
+                            <th:block th:if="${loginedMemberDto.m_profile_thumbnail} == null">
+                                <img class="profile_thumbnail" th:src="@{/img/default_img.png}"><br>
+                            </th:block>
+
+                            <input type="file" name="profile">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" value="MODIFY" onclick="modifyConfirm()">
+                            <input type="button" value="DELETE" onclick="deleteConfirm()">
+                            <input type="reset" value="RESET">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="imageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="image-gallery">
+                    <button class="prev" onclick="showPreviousImage()">&#10094;</button>
+                    <img class="modal-image" id="modalImage" src="">
+                    <button class="next" onclick="showNextImage()">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="~{/fragment/header_nav_footer::footer}"></footer>
+
+
+</body>
+</html>

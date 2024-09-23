@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<header th:fragment="header">
+  <div id="header_wrap">
+    <h3>MEMBER SERVICE</h3>
+  </div>
+</header>
+
+<nav th:fragment="nav">
+  <div id="nav_wrap">
+    <a th:href="@{/}">HOME</a> &nbsp;&nbsp;
+    <th:block th:if="${session.loginedMemberID == null}">
+      <a th:href="@{/member/create_account_form}">CREATE ACCOUNT</a> &nbsp;&nbsp;
+      <a th:href="@{/member/login_form}">LOGIN</a> &nbsp;&nbsp;
+    </th:block>
+    <th:block th:unless="${session.loginedMemberID == null}">
+      <a th:href="@{/member/modify_form}">MODIFY</a> &nbsp;&nbsp;
+      <a th:href="@{/member/logout_confirm}">LOGOUT</a> &nbsp;&nbsp;
+    </th:block>
+  </div>
+</nav>
+
+<footer th:fragment="footer">
+  <div id="footer_wrap">
+    OUR OFFICE.
+  </div>
+</footer>
+</html>

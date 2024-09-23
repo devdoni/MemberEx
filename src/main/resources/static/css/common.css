@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #404040;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+input {
+    outline: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="button"],
+input[type="reset"] {
+    width: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+input[type="button"],
+input[type="reset"] {
+    width: 150px;
+    cursor: pointer;
+}

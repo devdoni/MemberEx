@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="~{/fragment/title::title}"></title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/create_accout_form.css}">
+    <link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+    <script th:src="@{/js/create_account_form.js}"></script>
+</head>
+<body>
+
+<header th:replace="~{/fragment/header_nav_footer::header}"></header>
+<nav th:replace="~{/fragment/header_nav_footer::nav}"></nav>
+
+<main>
+    <div id="main_wrap">
+        <div class="word">
+            MODIFY SUCCESS
+        </div>
+    </div>
+</main>
+
+
+<footer th:replace="~{/fragment/header_nav_footer::footer}"></footer>
+
+
+</body>
+</html>
